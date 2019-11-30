@@ -1,6 +1,6 @@
 ## Steps For Running This App:
 
-Step 1: Unzip the folder and move to the folder using
+Step 1: Clone the project and move to the folder using
 
 cd movie-app/
 
