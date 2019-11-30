@@ -17,7 +17,6 @@ export class AppComponent implements OnDestroy {
     });
     this.moviesService.computeServiceVariable.subscribe(
       res => {
-        console.log(res);
         setTimeout(() => this.wishlistMovies = JSON.parse(localStorage.getItem('wishListMovies')) || [], 100);
       }
     );

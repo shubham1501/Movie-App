@@ -17,6 +17,6 @@
                 </div>
             </div>
         </div>
-        <h2 style="color:chocolate">Wishlist is empty</h2>
+        <h2 *ngIf="!wishlistMovies.length" style="color:chocolate">Wishlist is empty</h2>
     </div>
 </div>

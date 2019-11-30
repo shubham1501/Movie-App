@@ -16,7 +16,7 @@ export class WishlistComponent implements OnInit {
    }
 
   ngOnInit() {
-    if (localStorage.getItem('wishListMovies')) {
+    if (localStorage.getItem('wishListMovies') && localStorage.getItem('wishListMovies') !== 'null') {
       this.wishlistMovies = JSON.parse(localStorage.getItem('wishListMovies'));
       }
   }

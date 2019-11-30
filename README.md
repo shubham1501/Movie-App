@@ -2,7 +2,7 @@
 
 Step 1: Clone the project and move to the folder using
 
-cd movie-app/
+cd Movie-App/
 
 Step 2 : Install the required packages using this command
 

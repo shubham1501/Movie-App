@@ -30,7 +30,7 @@ export class MovieListingComponent implements OnInit {
     } else {
       this.getLatestMovies();
     }
-    if (localStorage.getItem('wishListMovies')) {
+    if (localStorage.getItem('wishListMovies') && localStorage.getItem('wishListMovies') !== 'null') {
       this.wishlistMovies = JSON.parse(localStorage.getItem('wishListMovies')) || [];
     }
   }
@@ -61,7 +61,6 @@ export class MovieListingComponent implements OnInit {
 
   // When scroll down the screen
   onScroll() {
-    console.log("Scrolled");
     this.page = this.page + 1;
     if (this.category === 'topRated') {
       this.getTopRatedMovies();
