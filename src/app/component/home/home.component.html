@@ -1,0 +1,94 @@
+<div class="container bootstrap snippet">
+    <hr>
+    <ol class="breadcrumb">
+		<li><a >Search (Movies, TV shows, Artists, etc)</a></li>
+	</ol>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    		<div class="well search-result">
+        		<div class="input-group">
+        		<input type="text" class="form-control" placeholder="Search" [(ngModel)]="search" (keyup)='searchData($event)'>
+			      <span class="input-group-btn">
+			        <button class="btn btn-info btn-lg" type="button">
+                        <i class="glyphicon glyphicon-search"></i>
+                        Search
+                    </button>
+			      </span>
+			    </div>
+            </div>
+            <div *ngIf="search.length">
+            <div class="well search-result" *ngFor="let result of searchedResults| slice:0:10;">
+            	<div class="row">
+            		<a>
+                		<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2" >
+	                    	<img style="width: 200px; height: 200px" class="img-responsive" [src]="(result.poster_path || result.profile_path) ? baseUrl + imageSize + (result.poster_path || result.profile_path): './assets/placeholder.png'" alt="">
+                		</div>
+                		<div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
+	                    	<h6>Media Type: <strong style="display: inline">{{result.media_type.toUpperCase()}}</strong></h6>
+                            <h6 class="users_name">{{result.original_title || result.original_name || result.name}}</h6>
+                            <strong class="join_date">{{result.vote_average ||  result.vote_average == 0 ? '★' : 'Popularity:'}} {{result.vote_average || result.popularity}}</strong>
+
+                        </div>
+            		</a>
+            	</div>
+            </div>
+            <div>
+		</div>
+    </div>
+    
+    <div class="container" style="padding: 5%" *ngIf="!search.length">
+        <div class="row">
+            <div class="col-md-12 col-lg-6">
+                <div class="card">
+                    <div class="header">
+                        <h2> <strong>Recently Released/ Releasing</strong></h2>
+                    </div>
+                    <div class="body" *ngIf="upcomingMovies.length">
+                        <ul class="new_friend_list list-unstyled row">
+                            <li class="col-lg-4 col-md-2 col-sm-6 col-4" *ngFor="let movie of upcomingMovies | slice:0:10;">
+                                <a >
+                                    <img [src]="movie.poster_path ? baseUrl + imageSize + movie.poster_path: './assets/placeholder.png'" class="img-thumbnail" alt="User Image">
+                                    <h6 class="users_name">{{movie.original_title}}</h6>
+                                    <small class="join_date">{{movie.release_date}}</small><br>
+                                    <strong class="join_date">★{{movie.vote_average}}</strong>
+                                </a>
+                            </li>                       
+                        </ul>
+                        <div class="row">
+                                <button type="button" class="btn btn-info  btn-block" (click)="loadMovies('recentlyReleased')">
+                                    <i class="glyphicon glyphicon-refresh"></i>Load more...
+                                </button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="card">
+                    <div class="header">
+                        <h2> <strong>Top Rated</strong></h2>
+                    </div>
+                    <div class="body" *ngIf="topRatedMovies.length">
+                        <ul class="new_friend_list list-unstyled row">
+                            <li class="col-lg-4 col-md-2 col-sm-6 col-4" *ngFor="let movie of topRatedMovies| slice:0:10;">
+                                <a >
+                                    <img [src]="movie.poster_path ? baseUrl + imageSize + movie.poster_path: './assets/placeholder.png'" class="img-thumbnail" alt="User Image">
+                                    <h6 class="users_name">{{movie.original_title}}</h6>
+                                    <small class="join_date">{{movie.release_date}}</small><br>
+                                    <strong class="join_date">★{{movie.vote_average}}</strong>
+                                </a>
+                            </li>                  
+                        </ul>
+                        <div class="row">
+                                <button type="button" class="btn btn-info  btn-block" (click)="loadMovies('topRated')">
+                                    <i class="glyphicon glyphicon-refresh"></i>Load more...
+                                </button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+	</div>     

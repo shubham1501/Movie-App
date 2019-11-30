@@ -1,0 +1,28 @@
+
+<div class="container">
+    <h2 class="header">{{title}}</h2>
+    <div class="row clearfix">
+            <div class="row" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false"  
+    style="height: 600px; overflow-y: scroll;">  
+        <div class="col-lg-3 col-md-4 col-sm-12" *ngFor="let movie of movies">
+            <div class="card product_item">
+                <div class="body">
+                    <div class="cp_img">
+                        <img [src]="movie.poster_path ? baseUrl + imageSize + movie.poster_path: './assets/placeholder.png'" alt="Product" class="img-fluid">
+                        <div class="hover">
+                            <a *ngIf="!checkMovieExistInWishlist(movie.id)" (click)="addToWishlist(movie)" class="btn btn-primary btn-sm waves-effect"><i class="zmdi zmdi-plus"></i>Add to Wishlist</a>
+                            <div *ngIf="checkMovieExistInWishlist(movie.id)" class="btn btn-primary btn-sm waves-effect"><i class="zmdi"></i> Added to Wishlist</div>
+                        </div>
+                    </div>
+                    <div class="product_details">
+                            <br><br><br><br>
+                        <div>{{movie.overview | truncate:[100]}}</div>
+                        <strong class="join_date">{{movie.release_date}}</strong><br>
+                        <strong class="join_date">★{{movie.vote_average}}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
